@@ -23,25 +23,18 @@ import com.fdmgroup.springbootprobaexample.service.CouponService;
 @Controller
 public class CouponController {
 	
-//	@Autowired
-//	private CouponService service;
+	@Autowired
+	private CouponService service;
 	
-//	//private List<Place> places = new ArrayList<Place>();
-//
-//	//@RequestMapping(method=RequestMethod.GET, value="/")
-//	@GetMapping( value="/")
-//	public String goToIndex(ModelMap model) {
-//		places.clear();
-//		Place place = new Place("Frankfurt", "Germany");
-//		Place place2 = new Place("Paris", "France");
-//		Place place3 = new Place("Berlin", "Germany");
-//		places.add(place);
-//		places.add(place2);
-//		places.add(place3);
-//		model.addAttribute("places", places);
-//		populateModel(model);
-//		return "index";
-//	}
+	private List<Coupon> coupons = new ArrayList<Coupon>();
+
+	@RequestMapping(method=RequestMethod.GET, value="/")
+	@GetMapping( value="/")
+	public String goToIndex(ModelMap model) {
+		model.addAttribute("coupons", coupons);
+		populateModel(model);
+		return "index";
+	}
 //	
 //	@PostMapping( value="/")
 //	public String createNewPlace(ModelMap model, @RequestParam String city,  @RequestParam(name="country") String placeCountry) {
@@ -64,7 +57,7 @@ public class CouponController {
 //		populateModel(model);
 //		return "index";
 //	}
-//	private void populateModel(ModelMap model) {
-//		model.addAttribute("places", service.findAllPlaces());
-//	}
+	private void populateModel(ModelMap model) {
+		model.addAttribute("places", service.findAllCoupons());
+	}
 }
