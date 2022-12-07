@@ -17,10 +17,10 @@ public class CouponService {
 	@Autowired
 	private CouponRepository repo;
 	
-	public List<User> findAllCoupons(){
+	public List<Coupon> findAllCoupons(){
 		return repo.findAll();
 	}
-//	
+////	
 //	public void createNewPlace(Place place) {
 //		repo.save(place);
 //	}

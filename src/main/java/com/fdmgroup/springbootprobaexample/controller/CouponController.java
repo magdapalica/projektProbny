@@ -28,11 +28,10 @@ public class CouponController {
 	
 	private List<Coupon> coupons = new ArrayList<Coupon>();
 
-	@RequestMapping(method=RequestMethod.GET, value="/")
 	@GetMapping( value="/")
 	public String goToIndex(ModelMap model) {
-		model.addAttribute("coupons", coupons);
-		populateModel(model);
+		List<Coupon> coupons = service.findAllCoupons(); //pobieram wszystkie kupony
+		model.addAttribute("coupons", coupons); //wysyłam do jsp
 		return "index";
 	}
 //	
@@ -57,7 +56,7 @@ public class CouponController {
 //		populateModel(model);
 //		return "index";
 //	}
-	private void populateModel(ModelMap model) {
-		model.addAttribute("places", service.findAllCoupons());
-	}
+//	private void populateModel(ModelMap model) {
+//		model.addAttribute("places", service.findAllCoupons());
+//	}
 }

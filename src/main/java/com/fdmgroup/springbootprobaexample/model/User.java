@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS_ID")
+@Table(name = "USER")
 public class User {
 	@Id
 	@GeneratedValue
@@ -25,9 +25,9 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private double totalPrice;
-	private List<Coupon> coupons;
 	@OneToMany(cascade = CascadeType.PERSIST)
-	private Coupon coupon;
+	private List<Coupon> coupons;
+
 	
 	
 	public User(Integer id, String firstName, String lastName, double totalPrice, List<Coupon> coupons) {
@@ -40,19 +40,21 @@ public class User {
 	}
 
 
+
 	public Integer getId() {
 		return id;
 	}
+
 
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getFirstName() {
 		return firstName;
 	}
+
 
 
 	public void setFirstName(String firstName) {
@@ -60,9 +62,11 @@ public class User {
 	}
 
 
+
 	public String getLastName() {
 		return lastName;
 	}
+
 
 
 	public void setLastName(String lastName) {
@@ -70,9 +74,11 @@ public class User {
 	}
 
 
+
 	public double getTotalPrice() {
 		return totalPrice;
 	}
+
 
 
 	public void setTotalPrice(double totalPrice) {
@@ -80,9 +86,11 @@ public class User {
 	}
 
 
+
 	public List<Coupon> getCoupons() {
 		return coupons;
 	}
+
 
 
 	public void setCoupons(List<Coupon> coupons) {
@@ -90,10 +98,12 @@ public class User {
 	}
 
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(coupon, coupons, firstName, id, lastName, totalPrice);
+		return Objects.hash(coupons, firstName, id, lastName, totalPrice);
 	}
+
 
 
 	@Override
@@ -105,13 +115,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(coupon, other.coupon) && Objects.equals(coupons, other.coupons)
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(id, other.id)
-				&& Objects.equals(lastName, other.lastName)
+		return Objects.equals(coupons, other.coupons) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
 				&& Double.doubleToLongBits(totalPrice) == Double.doubleToLongBits(other.totalPrice);
 	}
-	
-	
-	
+
+
 	
 }

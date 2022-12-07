@@ -11,4 +11,6 @@ import com.fdmgroup.springbootprobaexample.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	Optional<User> findById(Integer id);
 
+
+
 }

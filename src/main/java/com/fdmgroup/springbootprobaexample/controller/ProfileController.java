@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.springbootprobaexample.model.User;
 import com.fdmgroup.springbootprobaexample.service.UserService;
@@ -19,10 +20,11 @@ public class ProfileController{
 	public ProfileController(UserService userService) {
 		this.userService = userService;
 	}
-
-	@PostMapping("/personal")
-	public String updateProfile(ModelMap model, @ModelAttribute("user")User user){
-		model.addAttribute("user", userService.updateUser(user));
+	@GetMapping("/personal")
+	public String goToProfile(ModelMap model) {
+		Integer id = 1; 
+		model.addAttribute("user", userService.getCurrentUser(id));
 		return "personal";
 	}
+	
 }

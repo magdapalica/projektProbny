@@ -6,7 +6,7 @@
 
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Personal</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,59 +18,46 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", Arial, Helvetica, sans-serif
 }
 </style>
-<title>Personal</title>
-
 </head>
-
- 
 <body>
-<div class="w3-display-container w3-content" style="max-width: 1500px;">
-<jsp:include page="headerBar.jsp"/>
-<div class="w3-bar w3-white w3-large">
 
+<div class="w3-bar w3-white w3-large">
 </div>
 	
 		<div class="w3-bar w3-white w3-large">
-			<h2 class="w3-center w3-purple">Welcome ${user.getUsername()}</h2>
-			<h3 class="w3-center">Your Personal Information</h3>
-			
-		
-			<div class="w3-center">
+			<h2 >Welcome ${user.getId()}</h2>
+			<h3 >Your Personal Information</h3>
+			<div >
+				<p>User ID: ${user.getId()}</p>
 				<p>First Name: ${user.getFirstName()}</p>
 				<p>Last Name: ${user.getLastName()}</p>
-				<p>Price: ${user.getTotalPrice()}</p>
-				<p>Number: ${user.getCoupons()}</p>
+				<p>Total Price: ${user.getTotalPrice()}</p>
+				<p>List of coupons : ${user.getCoupons()}</p>
+				
+				<h4>List of Coupons:</h4>
 
-
-			</div>
-			<div>
-				<h4 class="w3-center">Update your information</h4>
-				<br />
-
-				<form method="POST" action="/personal">
-
-				<form class="w3-center" method="POST" action="/personal">
-
-
-					<input type="hidden" name="username" readonly="readonly"
-						value="${user.getUsername()}" /> <label> First Name:</label> <input
-						type="text" name="firstName" value="${user.getFirstName()}" /> <label>
-						Last Name:</label> <input type="text" name="lastName"
-						value="${user.getLastName()}" /><label> Total Price:</label> <input
-						type="text" name="totalPrice" value="${user.getTotalPrice()}" /> <label>
-						Number:</label> <input type="text" name="number"
-						value="${user.getCoupons()}" /> 
-						<input type="submit"
-						class="w3-bar-item w3-button w3-blue w3-mobile" value="Update" style="margin-left:47%; margin-top:25px"/>
-						
-						
-						
-				</form>
+	<table>
+			<td>Coupon ID</td>
+			<th>Value</th>
+			<th>Number of Uses</th>
+		</tr>
+	</div>
+		<c:forEach items="${coupons}" var="coupon">
+			<tr>
+				<td>${coupon.id}</td>
+				<td>${coupon.valuePln}</td>
+				<td>${coupon.numberOfUses}</td>
+	
+			</tr>
+		</c:forEach>
+	
+	</table>
 
 			</div>
-
 		</div>
 	</div>
-	<jsp:include page="homeBar.jsp"/>
+	
+<a href="/" > </i>Back</a>
+
 </body>
 </html>
