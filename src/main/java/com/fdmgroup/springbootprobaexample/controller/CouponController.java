@@ -16,47 +16,43 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fdmgroup.springbootprobaexample.model.User;
 import com.fdmgroup.springbootprobaexample.model.Coupon;
 import com.fdmgroup.springbootprobaexample.service.CouponService;
-
-
-
+import com.fdmgroup.springbootprobaexample.service.UserServiceImpl;
 
 @Controller
 public class CouponController {
 	
 	@Autowired
-	private CouponService service;
+	private CouponService couponService;
+	@Autowired
+	private UserServiceImpl  userService;
 	
 	private List<Coupon> coupons = new ArrayList<Coupon>();
 
 	@GetMapping( value="/")
 	public String goToIndex(ModelMap model) {
-		List<Coupon> coupons = service.findAllCoupons(); //pobieram wszystkie kupony
+		List<Coupon> coupons = couponService.findAllCoupons(); //pobieram wszystkie kupony
+		List<User> users = userService.findAllUsers();
 		model.addAttribute("coupons", coupons); //wysyłam do jsp
+		model.addAttribute("users", users); 
 		return "index";
 	}
-//	
-//	@PostMapping( value="/")
-//	public String createNewPlace(ModelMap model, @RequestParam String city,  @RequestParam(name="country") String placeCountry) {
-//		Place place=new Place(city, placeCountry);
-////		places.add(place);
-////		model.addAttribute("places", places);
-//		service.createNewPlace(place);
-//		populateModel(model);
-//		return "index";
-//	}
-//	@GetMapping(value="/places/{id}")
-//	public String goToDetails(ModelMap model, @PathVariable int id) {
-//		model.addAttribute("place", service.findPlacebyId(id));
-//		return "details";
-//	}
-//	
-//	@PostMapping(value="/deletePlace")
-//	public String deletePlace(ModelMap model, @RequestParam int id) {
-//		service.deletePlace(id);
-//		populateModel(model);
-//		return "index";
-//	}
-//	private void populateModel(ModelMap model) {
-//		model.addAttribute("places", service.findAllCoupons());
-//	}
+	@GetMapping( value="/add")
+	public String goToAdd(ModelMap model) {
+		populateModel(model);
+		return "add";
+	}
+	
+	@PostMapping( value="/add")
+	public String createNewCoupon(ModelMap model,  @RequestParam double valuePln, @RequestParam Integer numberOfUses) {
+		Coupon coupon =new Coupon(valuePln, numberOfUses);
+		coupons.add(coupon);
+		model.addAttribute("coupons", coupons);
+		couponService.createNewCoupon(coupon);
+		populateModel(model);
+		return "add";
+	}
+
+	private void populateModel(ModelMap model) {
+		model.addAttribute("coupons", couponService.findAllCoupons());
+	}
 }

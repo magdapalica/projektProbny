@@ -20,17 +20,8 @@ public class CouponService {
 	public List<Coupon> findAllCoupons(){
 		return repo.findAll();
 	}
-////	
-//	public void createNewPlace(Place place) {
-//		repo.save(place);
-//	}
-//
-//	public Place findPlacebyId(int id) {
-//		Optional<Place> optPlace = repo.findById(id);
-//		return optPlace.orElse(new Place("DefaultCity", "DefaultCountry"));
-//	}
-//
-//	public void deletePlace(int id) {
-//		repo.deleteById(id);
-//	}
+	
+	public void createNewCoupon(Coupon coupon) {
+		repo.save(coupon);
+	}
 }

@@ -17,36 +17,58 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </style>
 <body>
  <a href="/personal">Personal</a>
+ <a href="/add">Add</a>
+ 
 	<h3>Coupon Verification</h3>
 	<form action="/" method="post">
-		<input type="text" name="userId" placeholder="User id"/>
-		<input type="text" name="couponID" placeholder="Coupon id"/>
+		<input type="text" name="userId" placeholder="User Id"/>
+		<input type="text" name="couponID" placeholder="Coupon Id"/>
 		<input type="submit" value="Redeem Coupon"/>
 	</form>
-	
+	<table>
+		<tr>
+			<td>User ID</td>
+			<th>Coupon ID</th>
+		</tr>
+		
+		<c:forEach items="${redeems}" var="redeem">
+			<tr>
+				<td>${redeem.user.id}</td>
+				<td>${redeem.coupon.id}</td>
+		</tr>
+		</c:forEach>
+	</table>
 	<h4>List of Coupons</h4>
-
 	<table>
 		<tr>
 			<td>Coupon ID</td>
-			<th>Value</th>
 			<th>Number of Uses</th>
+			<th>Value</th>
 		</tr>
 		<c:forEach items="${coupons}" var="coupon">
 			<tr>
 				<td>${coupon.id}</td>
-				<td>${coupon.valuePln}</td>
 				<td>${coupon.numberOfUses}</td>
-	
-				<td>
-					<form action="Redeem Coupon" method="post">
-						<input type="hidden" name="id" value="${user.id}"/>
-						<input type="hidden" name="id" value="${coupon.id}"/>
-						<input type="submit" value="Redeem Coupon"/>
-					</form>
-				</td>
-			</tr>
+				<td>${coupon.valuePln}</td>
+		</tr>
 		</c:forEach>
-	</table>
+	</table>	
+	<h4>List of Persons</h4>
+	<table>
+		<tr>
+			<td>User ID</td>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Total Price</th>
+		</tr>
+		<c:forEach items="${users}" var="user">
+			<tr>
+				<td>${user.id}</td>
+				<td>${user.firstName}</td>
+				<td>${user.lastName}</td>
+				<td>${user.totalPrice}</td>
+		</tr>
+		</c:forEach>
+	</table>			
 </body>
 </html>

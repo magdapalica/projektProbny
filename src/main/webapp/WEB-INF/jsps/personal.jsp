@@ -34,8 +34,6 @@ body, h1, h2, h3, h4, h5, h6 {
 				<p>Total Price: ${user.getTotalPrice()}</p>
 				<p>List of coupons : ${user.getCoupons()}</p>
 				
-				<h4>List of Coupons:</h4>
-
 	<table>
 			<td>Coupon ID</td>
 			<th>Value</th>
@@ -56,6 +54,30 @@ body, h1, h2, h3, h4, h5, h6 {
 			</div>
 		</div>
 	</div>
+	
+	<h4>List of Persons</h4>
+	<form action="/personal" method="post">
+		<input type="text" name="name" placeholder="First Name"/>
+		<input type="text" name="lastName" placeholder="Last Name"/>
+		<input type="text" name="price" placeholder="Total Price"/>
+		<input type="submit" value="Add Person"/>
+	</form>
+	<table>
+		<tr>
+			<td>User ID</td>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Total Price</th>
+		</tr>
+		<c:forEach items="${users}" var="user">
+			<tr>
+				<td>${user.id}</td>
+				<td>${user.firstName}</td>
+				<td>${user.lastName}</td>
+				<td>${user.totalPrice}</td>
+		</tr>
+		</c:forEach>
+	</table>
 	
 <a href="/" > </i>Back</a>
 
